@@ -1,0 +1,28 @@
+name: Java Build
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # You can choose a different runner as needed
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: 11  # You can specify a different Java version
+
+    - name: Build with Maven
+      run: mvn clean install  # Adjust this command if you use a different build tool
+
+    - name: Run Tests
+      run: mvn test  # Adjust this command if you use a different test framework
+
+    # Add more steps as needed, such as deploying your application or publishing artifacts.
+
