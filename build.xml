@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CryptoPriceChecker" default="run" basedir=".">
+    <property name="src.dir" location="src"/>
+    <property name="build.dir" location="build"/>
+    <property name="main.class" value="CryptoPriceChecker"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="*.jar"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${main.class}">
+            <classpath>
+                <pathelement location="${build.dir}"/>
+                <path refid="classpath"/>
+            </classpath>
+        </java>
+    </target>
+</project>
